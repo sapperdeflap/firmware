@@ -5,6 +5,6 @@ config settings
 	option 'mac' ''
 	option 'share_internet' 'no'
 	option 'config_nets' 'lan'
-	option 'default_ap_ssid' 'bielefeld.freifunk.net'
+	option 'default_ap_ssid' 'unitedwifi.nl'
 	option 'default_ah_ssid' ''
 	option 'default_ah_bssid' '12:CA:FF:EE:BA:BE'
