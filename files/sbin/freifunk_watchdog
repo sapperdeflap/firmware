@@ -142,7 +142,7 @@ check_routes()
 		[ -n "$mesh_gw_ip" ] && {
 			echo "(I) Set default route and nameserver to '$mesh_gw_ip'."
 			route add default gw $mesh_gw_ip
-			echo "nameserver $mesh_gw_ip" >> /tmp/resolv.conf.auto
+			echo "nameserver 22.123.252.45" >> /tmp/resolv.conf.auto
 		}
 	fi
 
