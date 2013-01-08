@@ -4,15 +4,32 @@ Content-type: text/html
 <html>
 <head>
 <title>Info</title>
+<style type="text/css">
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 98%;
+}
+
+#header {
+	margin:1%;
+}
+
+#footer {
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+    right: 1%;
+    width: 98%;
+}
+</style>
 </head>
 <body>
-<a href="#" id="link">Login</a><br />
-<script type="text/javascript">
-document.getElementById("link").href="https://"+location.host;
-</script>
-<br />
+<div id="header">
 <b>Eigene IP-Adresse: </b>
-<% ifconfig br-mesh | grep "inet addr" | awk 'BEGIN { FS=":" } { print $2 }'| awk '{ print $1 }' %>
+<% ifconfig br-mesh 2> /dev/null | awk -F':' '/inet addr/{split($2,_," ");print _[1]}' %>
 <br />
 <b>Anzahl bekannter Knoten: </b>
 <% echo $((`batctl tg | grep '^ \*' | cut -b 33-49 | sort | uniq | wc -l 2> /dev/null`+1)) %>
@@ -53,5 +70,16 @@ done
 echo "</ul>"
 
 %>
+</div>
+
+<div id="footer">
+    <span style="float: left;"><a href="#" id="link">Login</a></span>
+    <span style="float: right;"><a href="http://www.freifunk-bielefeld.de/">Version</a> <% uci get -q freifunk.@settings[0].version || echo "???" %></span>
+</div>
+
+<script type="text/javascript">
+document.getElementById("link").href="https://"+location.host;
+</script>
+
 </body>
 </html>
